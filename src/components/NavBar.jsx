@@ -30,7 +30,7 @@ function NavBar() {
   const [nav, setNav] = useState(true);
   // const [toast, setToast] = useState("");
   useEffect(() => {
-    socket.current = io(`${import.meta.env.VITE_SOCKETURL}`);
+    socket.current = io(import.meta.env.VITE_SOCKETURL);
     socket.current.emit("newUser", user);
     // setSocket(io("ws://localhost:8800"));
     // console.log("socket connected", socket);

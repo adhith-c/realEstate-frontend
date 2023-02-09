@@ -25,7 +25,7 @@ function Chat() {
   }, [sendMessage]);
   // Connect to Socket.io
   useEffect(() => {
-    socket.current = io(`${import.meta.env.VITE_SOCKETURL}`);
+    socket.current = io(import.meta.env.VITE_SOCKETURL);
     socket.current.emit("new-user-add", user);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
