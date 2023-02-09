@@ -1,0 +1,10 @@
+.signupBg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.55)),
+    url(/buildings.jpg);
+
+  background-position: center;
+}
+
+.signupImage {
+  background-position: center;
+}

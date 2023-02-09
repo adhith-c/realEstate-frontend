@@ -1,0 +1,10 @@
+.loginBg {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url(../../../public/login1.jpg);
+
+  background-position: center;
+}
+
+.divImage {
+  background-position: center;
+}
