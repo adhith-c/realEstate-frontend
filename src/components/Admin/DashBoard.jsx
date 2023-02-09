@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import instance from "../../config/axios";
 import { selectCurrentToken } from "../../features/auth/authSlice";
-import Charts from "./Charts";
+// import Charts from "./Charts";
 function DashBoard() {
   const token = useSelector(selectCurrentToken);
   const [userCount, setUserCount] = useState();
