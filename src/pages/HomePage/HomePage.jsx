@@ -370,7 +370,7 @@ function HomePage() {
     <div className="w-full">
       {/* <Toast /> */}
       <NavBar />
-      <div className="homeBg bg-[url('homebg.jpg')] bg-cover bg-center h-screen flex justify-center items-center">
+      <div className="homeBg bg-[url('/public/homebg.jpg')] bg-cover bg-center h-screen flex justify-center items-center">
         <SearchPage
           addGeo={addGeo}
           setCoordinates={setCoordinates}
