@@ -7,16 +7,21 @@ import SuccessMsg from "../SuccessMsg";
 function UserTable() {
   const [userData, setUserData] = useState([]);
   const [message, setMessage] = useState("");
+  const [totalPages, setTotalPages] = useState();
+  const [page, setPage] = useState(0);
   useEffect(() => {
     try {
-      const users = instance.get("/users").then((data) => {
-        setUserData(data.data.users);
-      });
+      const users = instance
+        .get("/users", { params: { page: page } })
+        .then((data) => {
+          setUserData(data.data.users);
+          setTotalPages(data.data.totalPages);
+        });
     } catch (err) {
       toast.error("Something went wrong.Please try again");
     }
-  }, [message]);
-  console.log("styatjd", userData);
+  }, [message, page]);
+  console.log("styatjd", totalPages);
   const blockOrUnblock = (id) => {
     try {
       console.log("blockOrUnblock", id);
@@ -121,9 +126,9 @@ function UserTable() {
           class="flex items-center justify-between pt-4"
           aria-label="Table navigation">
           <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Showing{" "}
-            <span class="font-semibold text-gray-900 dark:text-white">
-              1-10
+            Showing
+            <span class="font-semibold text-gray-900 dark:text-black">
+              1-4
             </span>{" "}
             of{" "}
             <span class="font-semibold text-gray-900 dark:text-white">
@@ -131,7 +136,7 @@ function UserTable() {
             </span>
           </span>
           <ul class="inline-flex items-center -space-x-px">
-            <li>
+            <li onClick={() => setPage(page - 1)}>
               <a
                 href="#"
                 class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -149,9 +154,10 @@ function UserTable() {
                 </svg>
               </a>
             </li>
-            <li>
+            {/* <li>
               <a
                 href="#"
+                onClick={() => setPage(0)}
                 class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 1
               </a>
@@ -159,6 +165,7 @@ function UserTable() {
             <li>
               <a
                 href="#"
+                onClick={() => setPage(1)}
                 class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 2
               </a>
@@ -167,6 +174,7 @@ function UserTable() {
               <a
                 href="#"
                 aria-current="page"
+                onClick={() => setPage(2)}
                 class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
                 3
               </a>
@@ -184,8 +192,22 @@ function UserTable() {
                 class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 100
               </a>
-            </li>
-            <li>
+            </li> */}
+            {totalPages && (
+              <ul className="inline-flex items-center -space-x-px">
+                {[...Array(totalPages)].map((e, i) => {
+                  return (
+                    <li
+                      key={i}
+                      onClick={() => setPage(i)}
+                      className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                      {i + 1}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            <li onClick={() => setPage(page + 1)}>
               <a
                 href="#"
                 class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
