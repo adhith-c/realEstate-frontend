@@ -103,7 +103,7 @@ function NavBar() {
         //  setToast={setToasts}
       />
       {/* <h1 class="text-3xl font-bold underline">Hello world!</h1> */}
-      <h1 className="font-bold text-3xl mt-2 ">BeReal</h1>
+      <h1 className="font-bold text-3xl mt-2 ">PropertyPilot</h1>
       <ul className="hidden md:flex ">
         <li
           className="p-4"
@@ -285,13 +285,38 @@ function NavBar() {
             ? "fixed z-10 left-0 top-0 w-[40%] border-r border-r-gray-300 bg-[#ffff] h-full ease-in-out duration-500"
             : "fixed left-[100%]"
         }>
-        <h1 className="font-bold text-3xl w-full m-4">React</h1>
+        <h1 className="font-bold text-3xl w-full m-4">PropertyPilot</h1>
         <ul className="pt-12 uppercase">
-          <li className="p-4 border-b border-gray-400">Home</li>
-          <li className="p-4 border-b border-gray-400">Property Type</li>
-          <li className="p-4 border-b border-gray-400">Listing Type</li>
-          <li className="p-4 border-b border-gray-400">Chats</li>
-          <li className="p-4">Wishlist</li>
+          <li
+            className="p-4 border-b border-gray-400"
+            onClick={NavigateBackHome}>
+            Home
+          </li>
+          <li
+            className="p-4 border-b border-gray-400"
+            onClick={NavigateMyProperties}>
+            My Properties
+          </li>
+          <li
+            className="p-4 border-b border-gray-400"
+            onClick={handleSaved}>
+            Saved
+          </li>
+          <li
+            className="p-4 border-b border-gray-400"
+            onClick={handleChats}>
+            Chats
+          </li>
+          <li
+            className="p-4"
+            onClick={handleNavigate}>
+            Profile
+          </li>
+          <li
+            className="p-4"
+            onClick={handleLogout}>
+            Logout
+          </li>
         </ul>
         {/* {toast && <Toast type={toast} />} */}
       </div>
