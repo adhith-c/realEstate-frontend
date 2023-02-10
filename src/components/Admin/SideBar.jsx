@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectCurrentAdmin } from "../../features/admin/adminMainSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {
+  logOutAdmin,
+  selectCurrentAdmin,
+} from "../../features/admin/adminMainSlice";
 import Toast from "../Toast";
 import DashBoard from "./DashBoard";
 import UserTable from "./UserTable";
 
 function SideBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = useSelector(selectCurrentAdmin);
   const [menu, setMenu] = useState("dashboard");
+  const handleLogout = () => {
+    dispatch(logOutAdmin());
+    toast.success("Logged out successfully");
+    navigate("/admin/dashboard");
+  };
   console.log("admin", token);
   return (
     <div>
@@ -182,7 +194,7 @@ function SideBar() {
                 <span class="flex-1 ml-3 whitespace-nowrap">Properties</span>
               </a>
             </li> */}
-            <li>
+            <li onClick={handleLogout}>
               <a
                 href="#"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">

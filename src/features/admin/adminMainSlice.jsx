@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import instance from "../../config/axios";
 
 export const getAdmin = createAsyncThunk(
@@ -8,8 +9,9 @@ export const getAdmin = createAsyncThunk(
     console.log("res", res.data);
     if (res.data.accessToken) {
       Navigate("/admin/dashboard");
+    } else if (res.data.error) {
+      toast.error(res.data.error);
     }
-
     return res.data;
   }
 );

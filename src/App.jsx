@@ -6,9 +6,8 @@ import SignUp from "./pages/SignUp/SignUp";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import Layout from "./components/Layout";
-import Welcome from "./features/auth/Welcome";
 import RequireAuth from "./features/RequireAuth";
-import usersList from "./features/users/usersList";
+import AdminAuth from "./features/auth/AdminAuth";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import PropertyPage from "./pages/PropertyPage/PropertyPage";
 import SavedPage from "./pages/SavedPage/SavedPage";
@@ -29,10 +28,6 @@ function App() {
         />
         {/* public routes */}
 
-        {/* <Route index 
-         
-          element={< />}
-        /> */}
         <Route
           path="/login"
           element={<Login />}
@@ -48,14 +43,6 @@ function App() {
         <Route
           path="/admin/login"
           element={<AdminLogin />}
-        />
-        <Route
-          path="/admin/dashboard"
-          element={<AdminHomePage />}
-        />
-        <Route
-          path="/myProperties"
-          element={<MyProperties />}
         />
 
         {/* protected routes */}
@@ -76,6 +63,7 @@ function App() {
             path="home"
             element={<HomePage />}
           />
+
           {/* <Route
           path="property"
           element={<PropertyPage />}
@@ -87,6 +75,16 @@ function App() {
           <Route
             path="chat"
             element={<Chat />}
+          />
+          <Route
+            path="/myProperties"
+            element={<MyProperties />}
+          />
+        </Route>
+        <Route element={<AdminAuth />}>
+          <Route
+            path="/admin/dashboard"
+            element={<AdminHomePage />}
           />
         </Route>
       </Routes>
